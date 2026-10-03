@@ -1,0 +1,17 @@
+---
+interface Props {
+  filename: string;
+  label?: string;
+  lines: { text: string; tone?: "purple" | "blue" | "green" }[][];
+}
+
+const { filename, label = "Python code example", lines } = Astro.props;
+---
+
+<div class="code-window" aria-label={label}>
+  <div class="code-bar">
+    <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span
+    ><span>{filename}</span><span class="code-bar-language">PYTHON</span>
+  </div>
+  <pre><code>{lines.map((line) => <span class="code-line">{line.length ? line.map((part) => <span class={part.tone ? `token-${part.tone}` : undefined}>{part.text}</span>) : "\u00a0"}</span>)}</code></pre>
+</div>
