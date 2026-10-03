@@ -1,0 +1,38 @@
+---
+import Brand from "./Brand.astro";
+import { site } from "../config/site";
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-intro">
+      <Brand compact />
+      <p>Open-source Python learning, built in the open.</p>
+      <span class="footer-caption"
+        >The website and learning platform live in separate repositories.</span
+      >
+    </div>
+    <div class="footer-links">
+      <div>
+        <h3>Project</h3><a href={site.platformUrl}>Platform</a><a
+          href={site.websiteRepository}>Website source</a
+        ><a href="#roadmap">Roadmap</a>
+      </div>
+      <div>
+        <h3>Community</h3><a href={site.contributing}>Contributing</a><a
+          href={site.issues}>Issues</a
+        ><a href={site.organization}>GitHub</a>
+      </div>
+      <div>
+        <h3>Resources</h3><a href={site.documentation}>Documentation</a><a
+          href={site.license}>License</a
+        ><a href={site.security}>Security</a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {new Date().getFullYear()} PyOrbit contributors</span><span
+      >Learn. Understand. Build.</span
+    >
+  </div>
+</footer>

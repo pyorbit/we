@@ -1,0 +1,107 @@
+---
+import Brand from "./Brand.astro";
+import { site } from "../config/site";
+---
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <Brand />
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#learn">Learn</a>
+      <a href="#features">Features</a>
+      <a href="#open-source">Open source</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+    <div class="header-actions">
+      <a
+        class="github-link"
+        href={site.organization}
+        target="_blank"
+        rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a
+      >
+      <button
+        class="theme-toggle"
+        type="button"
+        aria-label="Theme: system. Switch to light theme"
+        title="Change color theme"><span aria-hidden="true">◐</span></button
+      >
+      <a
+        class="button button-primary header-cta"
+        href={site.platformUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        >Open PyOrbit <span aria-hidden="true">↗</span></a
+      >
+    </div>
+    <details class="mobile-nav">
+      <summary aria-label="Open navigation menu"
+        ><span></span><span></span><span></span></summary
+      >
+      <nav aria-label="Mobile navigation">
+        <a href="#learn">Learn</a>
+        <a href="#features">Features</a>
+        <a href="#open-source">Open source</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href={site.organization} target="_blank" rel="noopener noreferrer"
+          >GitHub ↗</a
+        >
+        <a href={site.platformUrl} target="_blank" rel="noopener noreferrer"
+          >Open PyOrbit ↗</a
+        >
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(".theme-toggle");
+  const choices = ["system", "light", "dark"] as const;
+  type Theme = (typeof choices)[number];
+
+  function currentTheme(): Theme {
+    try {
+      const saved = localStorage.getItem("pyorbit-theme");
+      return saved === "light" || saved === "dark" ? saved : "system";
+    } catch {
+      return "system";
+    }
+  }
+
+  function setTheme(theme: Theme): void {
+    if (theme === "system") {
+      delete document.documentElement.dataset.theme;
+    } else {
+      document.documentElement.dataset.theme = theme;
+    }
+    try {
+      if (theme === "system") localStorage.removeItem("pyorbit-theme");
+      else localStorage.setItem("pyorbit-theme", theme);
+    } catch {}
+    const next = choices[(choices.indexOf(theme) + 1) % choices.length];
+    if (button) {
+      button.setAttribute(
+        "aria-label",
+        `Theme: ${theme}. Switch to ${next} theme`,
+      );
+      button.setAttribute("title", `Theme: ${theme}. Switch to ${next}`);
+      button.querySelector("span")!.textContent =
+        theme === "light" ? "☀" : theme === "dark" ? "☾" : "◐";
+    }
+  }
+
+  setTheme(currentTheme());
+  button?.addEventListener("click", () => {
+    const next =
+      choices[(choices.indexOf(currentTheme()) + 1) % choices.length];
+    setTheme(next);
+  });
+
+  document
+    .querySelectorAll<HTMLAnchorElement>(".mobile-nav a")
+    .forEach((link) => {
+      link.addEventListener("click", () => {
+        const menu = link.closest("details");
+        if (menu) menu.open = false;
+      });
+    });
+</script>
