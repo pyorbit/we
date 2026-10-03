@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="PyOrbit — Open-source Python learning">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#aa78d1"/><stop offset=".55" stop-color="#7652c9"/><stop offset="1" stop-color="#5582d7"/></linearGradient>
+    <radialGradient id="wash"><stop stop-color="#e9dff8"/><stop offset="1" stop-color="#faf9ff"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#faf9ff"/>
+  <circle cx="1035" cy="315" r="350" fill="url(#wash)"/>
+  <circle cx="1035" cy="308" r="230" fill="none" stroke="#bfa6e7" opacity=".65" stroke-width="2"/>
+  <circle cx="1035" cy="308" r="168" fill="none" stroke="#7652c9" opacity=".38" stroke-width="2"/>
+  <circle cx="1035" cy="308" r="96" fill="#fff" stroke="#7652c9" stroke-width="3"/>
+  <circle cx="854" cy="155" r="11" fill="#5582d7"/>
+  <circle cx="1160" cy="454" r="8" fill="#aa78d1"/>
+  <text x="978" y="355" fill="#7652c9" font-family="Arial,sans-serif" font-size="135" font-weight="700">P</text>
+  <rect x="68" y="70" width="38" height="38" rx="11" fill="url(#brand)"/>
+  <text x="122" y="99" fill="#201a30" font-family="Arial,sans-serif" font-size="29" font-weight="700">PyOrbit</text>
+  <text x="68" y="267" fill="#201a30" font-family="Arial,sans-serif" font-size="73" font-weight="700">Learn Python.</text>
+  <text x="68" y="350" fill="#7652c9" font-family="Arial,sans-serif" font-size="73" font-weight="700">Understand the why.</text>
+  <text x="70" y="420" fill="#615a70" font-family="Arial,sans-serif" font-size="29">Open-source Python learning</text>
+  <rect x="68" y="521" width="180" height="4" rx="2" fill="url(#brand)"/>
+  <text x="68" y="563" fill="#7652c9" font-family="Arial,sans-serif" font-size="18" font-weight="700" letter-spacing="4">PYORBIT / OPEN SOURCE</text>
+</svg>

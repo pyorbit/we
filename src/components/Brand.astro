@@ -1,0 +1,20 @@
+---
+import { localUrl } from "../config/site";
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<a
+  class:list={["brand", { "brand-compact": compact }]}
+  href={localUrl()}
+  aria-label="PyOrbit home"
+>
+  <span class="brand-mark" aria-hidden="true"
+    ><span class="brand-core"></span></span
+  >
+  <span class="brand-name">PyOrbit<span class="brand-dot">.</span></span>
+</a>
