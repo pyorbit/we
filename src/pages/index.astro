@@ -1,0 +1,511 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import CodeWindow from "../components/CodeWindow.astro";
+import { site } from "../config/site";
+
+type CodeLine = { text: string; tone?: "purple" | "blue" | "green" }[];
+
+const heroCodeLines: CodeLine[] = [
+  [
+    { text: "def", tone: "purple" },
+    { text: " " },
+    { text: "orbit", tone: "blue" },
+    { text: "(name: " },
+    { text: "str", tone: "blue" },
+    { text: ") -> " },
+    { text: "str", tone: "blue" },
+    { text: ":" },
+  ],
+  [
+    { text: "    " },
+    { text: "return", tone: "purple" },
+    { text: ' f"Welcome, {name}"', tone: "green" },
+  ],
+  [],
+  [{ text: "print", tone: "blue" }, { text: '(orbit("Python"))' }],
+];
+
+const exampleCodeLines: CodeLine[] = [
+  [
+    { text: "class", tone: "purple" },
+    { text: " " },
+    { text: "Orbit", tone: "blue" },
+    { text: ":" },
+  ],
+  [
+    { text: "    " },
+    { text: "def", tone: "purple" },
+    { text: " " },
+    { text: "__init__", tone: "blue" },
+    { text: "(self, language: str):" },
+  ],
+  [{ text: "        self.language = language" }],
+  [],
+  [
+    { text: "    " },
+    { text: "def", tone: "purple" },
+    { text: " " },
+    { text: "learn", tone: "blue" },
+    { text: "(self):" },
+  ],
+  [
+    { text: "        " },
+    { text: "return", tone: "purple" },
+    { text: ' f"Exploring {self.language}"', tone: "green" },
+  ],
+  [],
+  [
+    { text: "python = Orbit(" },
+    { text: '"Python"', tone: "green" },
+    { text: ")" },
+  ],
+  [{ text: "print", tone: "blue" }, { text: "(python.learn())" }],
+];
+---
+
+<BaseLayout>
+  <Header />
+  <main id="main">
+    <section class="hero section" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow"
+            ><span class="eyebrow-line"></span> OPEN-SOURCE PYTHON LEARNING</span
+          >
+          <h1 id="hero-title">
+            Learn Python.<br /><span>Understand the why.</span>
+          </h1>
+          <p class="hero-lead">
+            PyOrbit brings clear explanations, readable code, and a growing
+            curriculum together in an open-source learning platform.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="button button-primary"
+              href={site.platformUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              >Open PyOrbit <span aria-hidden="true">↗</span></a
+            >
+            <a
+              class="button button-secondary"
+              href={site.platformRepository}
+              target="_blank"
+              rel="noopener noreferrer"
+              >View on GitHub <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          {
+            !site.hasLivePlatform && (
+              <p class="platform-note">
+                The live platform URL has not been published here yet. “Open
+                PyOrbit” currently opens its source repository.
+              </p>
+            )
+          }
+          <div class="hero-annotation">
+            <span class="annotation-dot"></span> Early-stage project <span
+              class="annotation-separator">/</span
+            > Built in the open
+          </div>
+        </div>
+        <div
+          class="hero-art"
+          aria-label="Illustration of Python code orbiting the PyOrbit project"
+        >
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two">
+          </div><div class="orbit orbit-three"></div>
+          <div class="orbit-center" aria-hidden="true">
+            <span class="orbit-glyph">P</span><span class="orbit-center-label"
+              >PYORBIT / 001</span
+            >
+          </div>
+          <span class="orbit-point point-one" aria-hidden="true"></span><span
+            class="orbit-point point-two"
+            aria-hidden="true"></span>
+          <div class="hero-code">
+            <CodeWindow
+              filename="hello.py"
+              label="Decorative Python greeting example"
+              lines={heroCodeLines}
+            />
+          </div>
+          <div class="hero-coordinate" aria-hidden="true">
+            01 / EXPLORE<br />02 / LEARN<br />03 / BUILD
+          </div>
+        </div>
+      </div>
+      <div class="container hero-bottom">
+        <span>AN OPEN WAY TO LEARN</span><a href="#learn"
+          >Explore the project <span aria-hidden="true">↓</span></a
+        >
+      </div>
+    </section>
+
+    <section
+      class="section section-border principles-section"
+      id="learn"
+      aria-labelledby="principles-title"
+    >
+      <div class="container">
+        <div class="section-heading">
+          <span class="section-index">01 / THE IDEA</span><h2
+            id="principles-title"
+          >
+            A better way to<br /><em>build understanding.</em>
+          </h2><p>
+            PyOrbit starts with fundamentals and connects each idea to the code
+            you write. The curriculum is open for others to inspect and improve.
+          </p>
+        </div>
+        <div class="principle-grid">
+          <article class="principle-card">
+            <span class="card-number">01</span><span
+              class="principle-symbol"
+              aria-hidden="true">&#123; &#125;</span
+            ><h3>Understand the why</h3><p>
+              Explanations aim to show how Python behaves, so syntax becomes a
+              tool rather than a list to memorize.
+            </p>
+          </article>
+          <article class="principle-card">
+            <span class="card-number">02</span><span
+              class="principle-symbol"
+              aria-hidden="true">&gt;_</span
+            ><h3>Read real code</h3><p>
+              Short examples connect concepts to actual Python. Interactive
+              execution is a future step, not a current claim.
+            </p>
+          </article>
+          <article class="principle-card">
+            <span class="card-number">03</span><span
+              class="principle-symbol"
+              aria-hidden="true">↗</span
+            ><h3>Open by default</h3><p>
+              Platform code and lesson content live on GitHub, where
+              contributors can review and improve them.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section platform-section"
+      id="features"
+      aria-labelledby="platform-title"
+    >
+      <div class="container platform-grid">
+        <div class="platform-copy">
+          <span class="section-index">02 / THE PLATFORM</span><h2
+            id="platform-title"
+          >
+            A place to learn.<br /><em>A project to shape.</em>
+          </h2><p class="section-lead">
+            The learning platform is a separate application. Its current
+            foundation includes a small sample course and a lesson reader; the
+            broader experience is being developed in public.
+          </p><a class="text-link" href={site.platformRepository}
+            >Explore the platform repository <span aria-hidden="true">↗</span
+            ></a
+          >
+        </div>
+        <div class="status-list" aria-label="Platform feature status">
+          <div class="status-row">
+            <span class="status-icon" aria-hidden="true">01</span><div>
+              <h3>Structured lessons</h3><p>
+                Git-backed course content and a lesson reader.
+              </p>
+            </div><span class="status-pill current">Current</span>
+          </div>
+          <div class="status-row">
+            <span class="status-icon" aria-hidden="true">02</span><div>
+              <h3>Code examples</h3><p>
+                Readable snippets inside learning content.
+              </p>
+            </div><span class="status-pill current">Current</span>
+          </div>
+          <div class="status-row">
+            <span class="status-icon" aria-hidden="true">03</span><div>
+              <h3>Interactive practice</h3><p>
+                Exercises, quizzes, and browser Python execution.
+              </p>
+            </div><span class="status-pill planned">Planned</span>
+          </div>
+          <div class="status-row">
+            <span class="status-icon" aria-hidden="true">04</span><div>
+              <h3>Personal progress</h3><p>
+                Accounts and progress synchronization.
+              </p>
+            </div><span class="status-pill planned">Planned</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tinted" aria-labelledby="lesson-title">
+      <div class="container lesson-grid">
+        <div
+          class="lesson-preview"
+          aria-label="Illustrative lesson preview, not a live platform interface"
+        >
+          <div class="preview-top">
+            <span class="preview-brand">PYORBIT / LEARN</span><span
+              class="preview-chip">Lesson preview</span
+            >
+          </div>
+          <div class="preview-body">
+            <div class="preview-sidebar">
+              <span class="preview-side-title">PYTHON FUNDAMENTALS</span><span
+                class="preview-side-item active"
+                >01&nbsp;&nbsp; Getting started</span
+              ><span class="preview-side-item">02&nbsp;&nbsp; Variables</span
+              ><span class="preview-side-item">03&nbsp;&nbsp; Types</span><span
+                class="preview-side-item">04&nbsp;&nbsp; Expressions</span
+              >
+            </div><div class="preview-lesson">
+              <span class="mini-eyebrow">CHAPTER 01 / FOUNDATIONS</span><h3>
+                Variables and types
+              </h3><p>
+                A name can refer to a value. Python determines its type at
+                runtime.
+              </p><div class="preview-snippet">
+                <span>name = <b>"PyOrbit"</b></span><span
+                  >year = <b>2025</b></span
+                >
+              </div><div class="preview-actions">
+                <span>← Previous</span><span>Next lesson →</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="lesson-copy">
+          <span class="section-index">03 / LEARNING EXPERIENCE</span><h2
+            id="lesson-title"
+          >
+            From idea<br />to example.
+          </h2><p class="section-lead">
+            Lessons in the platform are written as content in Git and rendered
+            for reading. The interface shown here illustrates that approach.
+          </p><p class="fine-print">
+            The sample curriculum is an early foundation. A complete beginner
+            course is a next milestone.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section code-section" aria-labelledby="code-title">
+      <div class="container code-grid">
+        <div class="code-copy">
+          <span class="section-index">04 / CODE FIRST</span><h2 id="code-title">
+            Python belongs<br /><em>in the picture.</em>
+          </h2><p class="section-lead">
+            Examples make an explanation concrete. PyOrbit already supports code
+            blocks in lessons; running and grading code in the browser is
+            planned.
+          </p><div class="code-caption">
+            <span class="caption-rule"></span> EXAMPLE / PYTHON
+          </div>
+        </div><div class="code-showcase">
+          <CodeWindow
+            filename="orbit.py"
+            label="Static Python class example"
+            lines={exampleCodeLines}
+          /><div class="code-output">
+            <span>OUTPUT</span><code>Exploring Python</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section section-border open-section"
+      id="open-source"
+      aria-labelledby="open-title"
+    >
+      <div class="container open-grid">
+        <div>
+          <span class="section-index">05 / OPEN SOURCE</span><h2
+            id="open-title"
+          >
+            Built in the open.<br /><em>Better together.</em>
+          </h2><p class="section-lead">
+            The platform, course content, and this website are developed in
+            public. See how decisions are made, report a problem, or improve a
+            lesson.
+          </p><div class="open-actions">
+            <a class="button button-dark" href={site.platformRepository}
+              >Platform source <span aria-hidden="true">↗</span></a
+            ><a class="text-link" href={site.contributing}
+              >Contribution guide <span aria-hidden="true">↗</span></a
+            >
+          </div>
+        </div><div class="repo-card">
+          <div class="repo-card-top">
+            <span class="repo-orbit" aria-hidden="true">◎</span><span
+              >GITHUB / PYORBIT</span
+            >
+          </div><div class="repo-row">
+            <span>pyorbit / pyorbit</span><strong
+              >Learning platform + curriculum <span aria-hidden="true">↗</span
+              ></strong
+            >
+          </div><div class="repo-row">
+            <span>pyorbit / we</span><strong
+              >Public project website <span aria-hidden="true">↗</span></strong
+            >
+          </div><div class="repo-card-bottom">
+            OPEN CODE <span>↔</span> OPEN CONTENT
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section ecosystem-section"
+      aria-labelledby="ecosystem-title"
+    >
+      <div class="container">
+        <div class="section-heading compact">
+          <span class="section-index">06 / THE ECOSYSTEM</span><h2
+            id="ecosystem-title"
+          >
+            One project.<br /><em>Two clear homes.</em>
+          </h2><p>
+            The website introduces PyOrbit. The platform hosts the learning
+            experience. GitHub connects the code, content, and community.
+          </p>
+        </div><div class="ecosystem-map">
+          <div class="ecosystem-node website-node">
+            <span>01 / DISCOVER</span><h3>Project website</h3><p>
+              Purpose, progress, and ways to contribute.
+            </p><small>THIS REPOSITORY / WE</small>
+          </div><div class="ecosystem-connector" aria-hidden="true">
+            <span>↔</span>
+          </div><div class="ecosystem-node platform-node">
+            <span>02 / LEARN</span><h3>Learning platform</h3><p>
+              Lessons today, more ways to practice ahead.
+            </p><small>PYORBIT / PYORBIT</small>
+          </div><div class="ecosystem-caption">
+            <span>GITHUB</span><span>Code · Curriculum · Community</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="section section-tinted roadmap-section"
+      id="roadmap"
+      aria-labelledby="roadmap-title"
+    >
+      <div class="container">
+        <div class="roadmap-header">
+          <div>
+            <span class="section-index">07 / WHAT'S NEXT</span><h2
+              id="roadmap-title"
+            >
+              A visible path<br /><em>forward.</em>
+            </h2>
+          </div><p>
+            PyOrbit is early-stage. These milestones reflect the platform
+            repository's current foundation and stated next work; dates are
+            intentionally open.
+          </p>
+        </div><ol class="roadmap-list">
+          <li>
+            <span class="roadmap-number">01</span><div>
+              <h3>Foundation</h3><p>
+                Git-backed sample course, lesson reader, and API foundation.
+              </p>
+            </div><span class="status-pill current">Current</span>
+          </li><li>
+            <span class="roadmap-number">02</span><div>
+              <h3>Beginner curriculum</h3><p>
+                Finish a complete first course with clear examples.
+              </p>
+            </div><span class="status-pill upcoming">Next</span>
+          </li><li>
+            <span class="roadmap-number">03</span><div>
+              <h3>Browser Python</h3><p>
+                Add actual client-side execution behind the documented
+                interface.
+              </p>
+            </div><span class="status-pill planned">Planned</span>
+          </li><li>
+            <span class="roadmap-number">04</span><div>
+              <h3>Practice and progress</h3><p>
+                Design exercises, accounts, and progress synchronization.
+              </p>
+            </div><span class="status-pill planned">Planned</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section
+      class="section contribute-section"
+      aria-labelledby="contribute-title"
+    >
+      <div class="container contribute-grid">
+        <div>
+          <span class="section-index">08 / CONTRIBUTE</span><h2
+            id="contribute-title"
+          >
+            There is room<br />to make it better.
+          </h2><p class="section-lead">
+            A good explanation, a clearer example, a bug report, or a code
+            change can all help this project grow.
+          </p><a class="button button-secondary" href={site.contributing}
+            >Read the contribution guide <span aria-hidden="true">↗</span></a
+          >
+        </div><div class="contribution-list">
+          <a href={site.contentGuide}
+            ><span>01</span> Improve a lesson <span aria-hidden="true">↗</span
+            ></a
+          ><a href={site.issues}
+            ><span>02</span> Report an issue <span aria-hidden="true">↗</span
+            ></a
+          ><a href={site.platformRepository}
+            ><span>03</span> Explore the code <span aria-hidden="true">↗</span
+            ></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-section" aria-labelledby="closing-title">
+      <div class="container closing-inner">
+        <div class="closing-orbit" aria-hidden="true"></div><span
+          class="closing-kicker">KEEP LEARNING / KEEP BUILDING</span
+        ><h2 id="closing-title">Find your way<br />into the orbit.</h2><p>
+          Explore the learning platform and help shape what comes next.
+        </p><div class="closing-actions">
+          <a
+            class="button button-light"
+            href={site.platformUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            >Open PyOrbit <span aria-hidden="true">↗</span></a
+          ><a
+            class="button button-outline-light"
+            href={site.organization}
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub <span aria-hidden="true">↗</span></a
+          >
+        </div>{
+          !site.hasLivePlatform && (
+            <small>
+              Until a live URL is configured, Open PyOrbit leads to its source
+              repository.
+            </small>
+          )
+        }
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
